@@ -33,7 +33,7 @@ fn main() {
 fn make_request(environ: &str, app_name: &str, version: String) -> String {
     let tags = vec![
         format!("env:{}", environ),
-        "release".to_string(),
+        "release-notifier".to_string(),
         app_name.to_string(),
     ];
 
@@ -53,7 +53,10 @@ fn make_request(environ: &str, app_name: &str, version: String) -> String {
 
     return match result {
         Ok(resp) => match resp.status() {
-            StatusCode::OK => format!("successfully notified release of:{}\n", app_name),
+            StatusCode::OK => format!(
+                "successfully notified release {} of {}\n",
+                version, app_name
+            ),
             s => format!("request was not successful\ncode: {:?}", s),
         },
         Err(err) => format!("error!: {:?}", err),
