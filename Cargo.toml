@@ -1,0 +1,9 @@
+[package]
+name = "grafana-notifier"
+version = "0.1.0"
+authors = ["DavyJOnes"]
+edition = "2018"
+
+[dependencies]
+reqwest = "0.9.13"
+serde = { version = "1.0.90", features = ["derive"] }
